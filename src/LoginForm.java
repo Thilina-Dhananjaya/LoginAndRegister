@@ -177,13 +177,16 @@ public class LoginForm extends javax.swing.JFrame {
         String uname = jTextField1.getText();
         String pass = String.valueOf(jPasswordField1.getPassword());
         
+        String dec = PWEncriptDecript.encript(pass);
+
+        
         String query = "SELECT * FROM `the_app_users` WHERE `u_uname` =? AND `u_pass` =?";
         
         try {
             ps = MyConnection.getConnection().prepareStatement(query);
             
             ps.setString(1, uname);
-            ps.setString(2, pass);
+            ps.setString(2, dec);
             
             rs = ps.executeQuery();
             

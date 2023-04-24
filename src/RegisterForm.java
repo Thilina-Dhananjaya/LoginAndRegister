@@ -253,7 +253,9 @@ public class RegisterForm extends javax.swing.JFrame {
             SimpleDateFormat dateformat =new SimpleDateFormat("yyyy-MM-dd");
             bdate = dateformat.format(jDateChooser_BDATE.getDate());  
         }
-        
+            
+            String enc = PWEncriptDecript.encript(pass);
+                   
         PreparedStatement ps;
         String query  = "INSERT INTO `the_app_users`(`u_fname`, `u_lname`, `u_uname`, `u_pass`, `u_bdate`, `u_address`) VALUES (?,?,?,?,?,?)";
         
@@ -263,7 +265,7 @@ public class RegisterForm extends javax.swing.JFrame {
             ps.setString(1, fname);
             ps.setString(2, lname);
             ps.setString(3, uname);
-            ps.setString(4, pass);
+            ps.setString(4, enc);
             
             if (bdate != null)
             {
